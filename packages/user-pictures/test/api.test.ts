@@ -99,7 +99,7 @@ describe('getProfile', () => {
     await expect(getProfile()).rejects.toThrow('HTTP error! Status: 500');
   });
 
-  it('should handle network errors', async () => {
+  it('should propagate network errors', async () => {
     globalThis.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
 
     await expect(getProfile()).rejects.toThrow('Network error');
