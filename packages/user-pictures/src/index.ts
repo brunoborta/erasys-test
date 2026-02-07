@@ -1,7 +1,7 @@
-// API functions
+// API
 export { getProfile } from './api/index.js';
 
-// Utility functions
+// Utility
 export { 
   buildImageUrl, 
   getPublicPictures, 
