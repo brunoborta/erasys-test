@@ -1,6 +1,6 @@
 {
   "name": "@borta/user-pictures",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shared user pictures SDK for Erasys Test",
   "publishConfig": {
     "access": "public"
