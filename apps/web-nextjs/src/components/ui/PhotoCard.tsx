@@ -25,8 +25,11 @@ export function PhotoCard({ picture, imageUrl, profileName, index }: PhotoCardPr
             alt={altText}
             fill
             className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 380px"
+            quality={80}
             priority={index < 4}
+            fetchPriority={index < 4 ? "high" : "auto"}
+            loading={index < 4 ? "eager" : "lazy"}
           />
         </div>
         

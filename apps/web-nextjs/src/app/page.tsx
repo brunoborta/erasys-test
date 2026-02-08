@@ -1,37 +1,16 @@
 import type { Metadata } from "next";
-import { getAllImageUrls, getProfile, getPublicPictures } from "@borta/user-pictures";
+import { getAllImageUrls, getPublicPictures } from "@borta/user-pictures";
 import { ProfileHeader } from "@/components/features/ProfileHeader";
 import { PhotoCard } from "@/components/ui/PhotoCard";
 import { MasonryGrid } from "@/components/ui/MasonryGrid";
 import { StatsSection } from "@/components/features/StatsSection";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
+import { getProfile } from "@/lib/profile";
+import { generateProfileMetadata, generateJsonLDData } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const profile = await getProfile();
-  const publicPictures = getPublicPictures(profile);
-  
-  return {
-    title: `${profile.name} - Profile Gallery`,
-    description: profile.headline || `View ${profile.name}'s photo gallery with ${publicPictures.length} public photos`,
-    openGraph: {
-      title: `${profile.name} - Profile Gallery`,
-      description: profile.headline || `View ${profile.name}'s photo gallery`,
-      type: "profile",
-      images: publicPictures.length > 0 ? [
-        {
-          url: getAllImageUrls(profile, true)[0],
-          width: publicPictures[0].width,
-          height: publicPictures[0].height,
-          alt: `${profile.name} - Featured Photo`,
-        }
-      ] : [],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${profile.name} - Profile Gallery`,
-      description: profile.headline || `View ${profile.name}'s photo gallery`,
-    },
-  };
+  return generateProfileMetadata(profile);
 }
 
 export default async function Home() {
@@ -39,36 +18,15 @@ export default async function Home() {
   const imageUrls = getAllImageUrls(profile, true);
   const publicPictures = getPublicPictures(profile);
 
-  // JSON-LD Structured Data
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "mainEntity": {
-      "@type": "Person",
-      "name": profile.name,
-      "description": profile.headline,
-      "identifier": profile.id,
-    },
-    "image": publicPictures.length > 0 ? {
-      "@type": "ImageGallery",
-      "numberOfItems": publicPictures.length,
-      "image": publicPictures.slice(0, 10).map((pic, idx) => ({
-        "@type": "ImageObject",
-        "contentUrl": imageUrls[idx],
-        "width": pic.width,
-        "height": pic.height,
-        "caption": `${profile.name} - Photo ${idx + 1}`,
-      })),
-    } : undefined,
-  };
+  // Generate JSON-LD structured data for SEO
+  const structuredData = generateJsonLDData(profile);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-background-secondary">
       {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
       
       <ThemeSwitcher />
       <main className="container mx-auto px-4 py-12">

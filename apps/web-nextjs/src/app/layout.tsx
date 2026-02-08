@@ -6,19 +6,21 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+  display: 'swap',
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: "Profile Gallery - Erasys Test",
   description: "Browse professional photo gallery and profile information. Discover high-quality images and detailed statistics.",
   keywords: ["profile", "gallery", "photos", "portfolio"],
-  authors: [{ name: "Erasys" }],
+  authors: [{ name: 'Bruno "Borta" Bortagaray' }],
   openGraph: {
     title: "Profile Gallery - Erasys Test",
     description: "Browse professional photo gallery and profile information",
@@ -34,10 +36,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
