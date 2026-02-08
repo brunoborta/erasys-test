@@ -1,0 +1,30 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ThemeIcon } from "./ThemeIcon";
+
+type Theme = "light" | "dark";
+
+export function ThemeSwitcher() {
+  const [theme, setTheme] = useState<Theme>("dark");
+
+  const toggleTheme = () => {
+    setTheme((t) => (t === "light" ? "dark" : "light"))
+  }
+
+  useEffect(() => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+  }, [theme]);
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="fixed cursor-pointer top-6 right-6 z-50 p-3 rounded-full bg-card-bg shadow-lg hover:shadow-2xl hover:scale-125 transition-all duration-300 ease-out border border-border"
+      aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+      aria-pressed={theme === "dark"}
+    >
+    <ThemeIcon theme={theme} />
+    </button>
+  );
+}
