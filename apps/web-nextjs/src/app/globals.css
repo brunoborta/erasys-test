@@ -69,3 +69,7 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+.break-inside-avoid {
+  break-inside: avoid;
+}
