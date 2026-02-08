@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --background: 20 12 5;
+  --background-secondary: 45 22 8;
+  --foreground: 255 247 237;
+  --foreground-secondary: 253 186 116;
+  --muted: 180 120 70;
+  --border: 154 52 18;
+  --card-bg: 55 28 10;
+  --card-hover: 75 38 14;
+}
+
+@theme inline {
+  --color-background: rgb(var(--background));
+  --color-background-secondary: rgb(var(--background-secondary));
+  --color-foreground: rgb(var(--foreground));
+  --color-foreground-secondary: rgb(var(--foreground-secondary));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-card-bg: rgb(var(--card-bg));
+  --color-card-hover: rgb(var(--card-hover));
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.break-inside-avoid {
+  break-inside: avoid;
+}
