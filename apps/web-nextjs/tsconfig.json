@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "../../packages/ui/src/StatCard.tsx"  ],
   "exclude": ["node_modules"]
 }

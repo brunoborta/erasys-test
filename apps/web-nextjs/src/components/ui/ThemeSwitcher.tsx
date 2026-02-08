@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ThemeIcon } from "./ThemeIcon";
+import { ThemeIcon } from "@borta/web-ui";
 
 type Theme = "light" | "dark";
 

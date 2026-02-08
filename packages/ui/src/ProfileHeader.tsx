@@ -1,23 +1,23 @@
-import type { Profile } from '@borta/user-pictures';
-
 interface ProfileHeaderProps {
-  profile: Profile;
+  name: string;
+  headline?: string;
+  profileId: string;
 }
 
-export function ProfileHeader({ profile }: ProfileHeaderProps) {
+export function ProfileHeader({ name, headline, profileId }: ProfileHeaderProps) {
   return (
     <header className="mb-12 text-center">
       <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-        {profile.name}
+        {name}
       </h1>
-      {profile.headline && (
+      {headline && (
         <h2 className="mt-4 text-lg text-foreground-secondary font-normal">
-          {profile.headline}
+          {headline}
         </h2>
       )}
       <dl className="mt-2 text-sm text-muted">
         <dt className="sr-only">Profile ID</dt>
-        <dd>Profile ID: {profile.id}</dd>
+        <dd>Profile ID: {profileId}</dd>
       </dl>
     </header>
   );

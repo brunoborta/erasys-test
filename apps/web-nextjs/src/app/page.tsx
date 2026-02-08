@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getAllImageUrls, getPublicPictures } from "@borta/user-pictures";
-import { ProfileHeader } from "@/components/features/ProfileHeader";
-import { PhotoCard } from "@/components/ui/PhotoCard";
-import { MasonryGrid } from "@/components/ui/MasonryGrid";
-import { StatsSection } from "@/components/features/StatsSection";
+import { PhotoCard, MasonryGrid, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
+
 import { getProfile } from "@/lib/profile";
 import { generateProfileMetadata, generateJsonLDData } from "@/lib/metadata";
 
@@ -30,7 +29,11 @@ export default async function Home() {
       
       <ThemeSwitcher />
       <main className="container mx-auto px-4 py-12">
-        <ProfileHeader profile={profile} />
+        <ProfileHeader 
+        name={profile.name}
+        headline={profile.headline}
+        profileId={profile.id}
+      />
         
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
@@ -38,13 +41,33 @@ export default async function Home() {
             {publicPictures.map((picture, index) => (
               <figure className="mb-4 break-inside-avoid" key={picture.id}>
                 <PhotoCard
-                  picture={picture}
-                  imageUrl={imageUrls[index]}
-                  profileName={profile.name}
-                  index={index}
+                  aspectRatio={picture.width / picture.height}
+                  imageSlot={
+                    <Image
+                      src={imageUrls[index]}
+                      alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 380px"
+                      quality={80}
+                      priority={index < 4}
+                      fetchPriority={index < 4 ? "high" : "auto"}
+                      loading={index < 4 ? "eager" : "lazy"}
+                    />
+                  }
+                  overlaySlot={
+                    <Overlay
+                      title={`${picture.width} × ${picture.height}`}
+                      subtitle={`Rating: ${picture.rating}`}
+                    />
+                  }
+                  captionSlot={
+                    <figcaption className="sr-only">
+                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by {picture.height} pixels
+                    </figcaption>
+                  }
                 />
               </figure>
-              
             ))}
           </MasonryGrid>
         </section>

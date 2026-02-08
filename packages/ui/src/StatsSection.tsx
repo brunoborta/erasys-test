@@ -1,4 +1,4 @@
-import { StatCard } from '@/components/ui/StatCard';
+import { StatCard } from './StatCard';
 
 interface StatsSectionProps {
   publicCount: number;

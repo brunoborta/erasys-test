@@ -1,0 +1,59 @@
+@source ".";
+
+:root {
+  /* light mode */
+  --background: 226 232 240;
+  --background-secondary: 203 213 225;
+  --foreground: 15 23 42;
+  --foreground-secondary: 51 65 85;
+  --muted: 100 116 139;
+  --border: 148 163 184;
+  --card-bg: 248 250 252;
+  --card-hover: 226 232 240;
+
+  /* dark mode */
+  --dark-background: 15 23 42;
+  --dark-background-secondary: 30 41 59;
+  --dark-foreground: 248 250 252;
+  --dark-foreground-secondary: 203 213 225;
+  --dark-muted: 148 163 184;
+  --dark-border: 51 65 85;
+  --dark-card-bg: 51 65 85;
+  --dark-card-hover: 66 75 105;
+}
+
+.dark {
+  --background: var(--dark-background);
+  --background-secondary: var(--dark-background-secondary);
+  --foreground: var(--dark-foreground);
+  --foreground-secondary: var(--dark-foreground-secondary);
+  --muted: var(--dark-muted);
+  --border: var(--dark-border);
+  --card-bg: var(--dark-card-bg);
+  --card-hover: var(--dark-card-hover);
+}
+
+/* fallback: if no scheme is selected */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    --background: var(--dark-background);
+    --background-secondary: var(--dark-background-secondary);
+    --foreground: var(--dark-foreground);
+    --foreground-secondary: var(--dark-foreground-secondary);
+    --muted: var(--dark-muted);
+    --border: var(--dark-border);
+    --card-bg: var(--dark-card-bg);
+    --card-hover: var(--dark-card-hover);
+  }
+}
+
+@theme inline {
+  --color-background: rgb(var(--background));
+  --color-background-secondary: rgb(var(--background-secondary));
+  --color-foreground: rgb(var(--foreground));
+  --color-foreground-secondary: rgb(var(--foreground-secondary));
+  --color-muted: rgb(var(--muted));
+  --color-border: rgb(var(--border));
+  --color-card-bg: rgb(var(--card-bg));
+  --color-card-hover: rgb(var(--card-hover));
+}
