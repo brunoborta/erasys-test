@@ -1,260 +1,281 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   buildImageUrl,
   getPublicPictures,
   getSafePictures,
   getPreviewImageUrl,
-  getAllImageUrls,
-} from '../src/utils/index.js';
-import type { Profile, Picture } from '../src/types/index.js';
+  getImageUrls,
+} from "../src/utils/index.js";
+import type { Profile } from "../src/types/index.js";
 
-describe('buildImageUrl', () => {
-  it('should build correct image URL from url_token', () => {
-    const url = buildImageUrl('abc123xyz');
-    expect(url).toBe('https://www.hunqz.com/img/usr/original/0x0/abc123xyz.jpg');
+describe("buildImageUrl", () => {
+  it("builds the correct image URL from url_token", () => {
+    expect(buildImageUrl("abc123xyz")).toBe(
+      "https://www.hunqz.com/img/usr/original/0x0/abc123xyz.jpg"
+    );
   });
 
-  it('should handle different url_tokens', () => {
-    const url1 = buildImageUrl('token1');
-    const url2 = buildImageUrl('token2');
-    
-    expect(url1).toBe('https://www.hunqz.com/img/usr/original/0x0/token1.jpg');
-    expect(url2).toBe('https://www.hunqz.com/img/usr/original/0x0/token2.jpg');
-  });
-
-  it('should handle empty string', () => {
-    const url = buildImageUrl('');
-    expect(url).toBe('https://www.hunqz.com/img/usr/original/0x0/.jpg');
+  it("throws when url_token is empty", () => {
+    expect(() => buildImageUrl("")).toThrow("url_token is required");
   });
 });
 
-describe('getPublicPictures', () => {
-  it('should return only public pictures', () => {
+describe("getPublicPictures", () => {
+  it("returns only public pictures", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-        { id: '2', url_token: 'token2', width: 100, height: 100, rating: 'NEUTRAL', is_public: false },
-        { id: '3', url_token: 'token3', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
+        {
+          id: "1",
+          url_token: "token1",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: true,
+        },
+        {
+          id: "2",
+          url_token: "token2",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: false,
+        },
+        {
+          id: "3",
+          url_token: "token3",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: true,
+        },
       ],
     };
 
     const publicPics = getPublicPictures(profile);
-    
+
     expect(publicPics).toHaveLength(2);
-    expect(publicPics[0].id).toBe('1');
-    expect(publicPics[1].id).toBe('3');
-    expect(publicPics.every(pic => pic.is_public)).toBe(true);
+    expect(publicPics.map((p) => p.id)).toEqual(["1", "3"]);
+    expect(publicPics.every((p) => p.is_public)).toBe(true);
   });
 
-  it('should return empty array when no public pictures', () => {
+  it("returns an empty array when there are no public pictures", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: false },
+        {
+          id: "1",
+          url_token: "token1",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: false,
+        },
       ],
     };
 
-    const publicPics = getPublicPictures(profile);
-    expect(publicPics).toHaveLength(0);
-  });
-
-  it('should return all pictures when all are public', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-        { id: '2', url_token: 'token2', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-      ],
-    };
-
-    const publicPics = getPublicPictures(profile);
-    expect(publicPics).toHaveLength(2);
-  });
-
-  it('should handle empty pictures array', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [],
-    };
-
-    const publicPics = getPublicPictures(profile);
-    expect(publicPics).toHaveLength(0);
+    expect(getPublicPictures(profile)).toEqual([]);
   });
 });
 
-describe('getSafePictures', () => {
-  it('should return only APP_SAFE and NEUTRAL pictures', () => {
+describe("getSafePictures", () => {
+  it("returns only public pictures with APP_SAFE or NEUTRAL rating", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'APP_SAFE', is_public: true },
-        { id: '2', url_token: 'token2', width: 100, height: 100, rating: 'EROTIC', is_public: true },
-        { id: '3', url_token: 'token3', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-        { id: '4', url_token: 'token4', width: 100, height: 100, rating: 'EROTIC', is_public: true },
+        {
+          id: "1",
+          url_token: "token1",
+          width: 100,
+          height: 100,
+          rating: "APP_SAFE",
+          is_public: true,
+        },
+        {
+          id: "2",
+          url_token: "token2",
+          width: 100,
+          height: 100,
+          rating: "EROTIC",
+          is_public: true,
+        },
+        {
+          id: "3",
+          url_token: "token3",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: true,
+        },
+        {
+          id: "4",
+          url_token: "token4",
+          width: 100,
+          height: 100,
+          rating: "NEUTRAL",
+          is_public: false, // should be excluded
+        },
       ],
     };
 
     const safePics = getSafePictures(profile);
-    
+
     expect(safePics).toHaveLength(2);
-    expect(safePics[0].rating).toBe('APP_SAFE');
-    expect(safePics[1].rating).toBe('NEUTRAL');
+    expect(safePics.map((p) => p.id)).toEqual(["1", "3"]);
+    expect(safePics.every((p) => p.is_public)).toBe(true);
+    expect(safePics.map((p) => p.rating)).toEqual(["APP_SAFE", "NEUTRAL"]);
   });
 
-  it('should return empty array when no safe pictures', () => {
+  it("returns an empty array when there are no safe pictures", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'EROTIC', is_public: true },
+        {
+          id: "1",
+          url_token: "token1",
+          width: 100,
+          height: 100,
+          rating: "EROTIC",
+          is_public: true,
+        },
       ],
     };
 
-    const safePics = getSafePictures(profile);
-    expect(safePics).toHaveLength(0);
-  });
-
-  it('should handle only APP_SAFE pictures', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'APP_SAFE', is_public: true },
-        { id: '2', url_token: 'token2', width: 100, height: 100, rating: 'APP_SAFE', is_public: true },
-      ],
-    };
-
-    const safePics = getSafePictures(profile);
-    expect(safePics).toHaveLength(2);
-  });
-
-  it('should handle only NEUTRAL pictures', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-      ],
-    };
-
-    const safePics = getSafePictures(profile);
-    expect(safePics).toHaveLength(1);
+    expect(getSafePictures(profile)).toEqual([]);
   });
 });
 
-describe('getPreviewImageUrl', () => {
-  it('should return preview image URL when preview_pic exists', () => {
+describe("getPreviewImageUrl", () => {
+  it("returns preview image URL when preview_pic exists", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [],
       preview_pic: {
-        id: 'preview',
-        url_token: 'preview-token',
+        id: "preview",
+        url_token: "preview-token",
         width: 200,
         height: 200,
-        rating: 'NEUTRAL',
+        rating: "NEUTRAL",
         is_public: true,
       },
     };
 
-    const url = getPreviewImageUrl(profile);
-    expect(url).toBe('https://www.hunqz.com/img/usr/original/0x0/preview-token.jpg');
+    expect(getPreviewImageUrl(profile)).toBe(
+      "https://www.hunqz.com/img/usr/original/0x0/preview-token.jpg"
+    );
   });
 
-  it('should return null when preview_pic is undefined', () => {
+  it("returns null when preview_pic is missing", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [],
     };
 
-    const url = getPreviewImageUrl(profile);
-    expect(url).toBeNull();
+    expect(getPreviewImageUrl(profile)).toBeNull();
   });
 
-  it('should use buildImageUrl internally', () => {
+  it("throws when preview_pic exists but url_token is empty (delegates to buildImageUrl)", () => {
     const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
+      id: "1",
+      name: "Test Profile",
       pictures: [],
       preview_pic: {
-        id: 'preview',
-        url_token: 'test-token-123',
+        id: "preview",
+        url_token: "",
         width: 200,
         height: 200,
-        rating: 'NEUTRAL',
+        rating: "NEUTRAL",
         is_public: true,
       },
     };
 
-    const url = getPreviewImageUrl(profile);
-    const expectedUrl = buildImageUrl('test-token-123');
-    expect(url).toBe(expectedUrl);
+    expect(() => getPreviewImageUrl(profile)).toThrow("url_token is required");
   });
 });
 
-describe('getAllImageUrls', () => {
-  const mockProfile: Profile = {
-    id: '1',
-    name: 'Test Profile',
+describe("getImageUrls", () => {
+  const profile: Profile = {
+    id: "1",
+    name: "Test Profile",
     pictures: [
-      { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
-      { id: '2', url_token: 'token2', width: 100, height: 100, rating: 'NEUTRAL', is_public: false },
-      { id: '3', url_token: 'token3', width: 100, height: 100, rating: 'NEUTRAL', is_public: true },
+      {
+        id: "1",
+        url_token: "token1",
+        width: 100,
+        height: 100,
+        rating: "NEUTRAL",
+        is_public: true,
+      },
+      {
+        id: "2",
+        url_token: "token2",
+        width: 100,
+        height: 100,
+        rating: "NEUTRAL",
+        is_public: false,
+      },
+      {
+        id: "3",
+        url_token: "token3",
+        width: 100,
+        height: 100,
+        rating: "EROTIC",
+        is_public: true,
+      },
+      {
+        id: "4",
+        url_token: "token4",
+        width: 100,
+        height: 100,
+        rating: "APP_SAFE",
+        is_public: true,
+      },
     ],
   };
 
-  it('should return only public image URLs by default', () => {
-    const urls = getAllImageUrls(mockProfile);
-    
-    expect(urls).toHaveLength(2);
-    expect(urls[0]).toBe('https://www.hunqz.com/img/usr/original/0x0/token1.jpg');
-    expect(urls[1]).toBe('https://www.hunqz.com/img/usr/original/0x0/token3.jpg');
+  it("returns public + safe URLs by default (publicOnly=true, safeOnly=true)", () => {
+    const urls = getImageUrls(profile);
+
+    expect(urls).toEqual([
+      "https://www.hunqz.com/img/usr/original/0x0/token1.jpg", // public + NEUTRAL
+      "https://www.hunqz.com/img/usr/original/0x0/token4.jpg", // public + APP_SAFE
+    ]);
   });
 
-  it('should return only public image URLs when onlyPublic is true', () => {
-    const urls = getAllImageUrls(mockProfile, true);
-    
-    expect(urls).toHaveLength(2);
+  it("returns public URLs when safeOnly is false", () => {
+    const urls = getImageUrls(profile, { safeOnly: false });
+
+    expect(urls).toEqual([
+      "https://www.hunqz.com/img/usr/original/0x0/token1.jpg", // public
+      "https://www.hunqz.com/img/usr/original/0x0/token3.jpg", // public even if EROTIC
+      "https://www.hunqz.com/img/usr/original/0x0/token4.jpg", // public
+    ]);
   });
 
-  it('should return all image URLs when onlyPublic is false', () => {
-    const urls = getAllImageUrls(mockProfile, false);
-    
-    expect(urls).toHaveLength(3);
-    expect(urls[0]).toBe('https://www.hunqz.com/img/usr/original/0x0/token1.jpg');
-    expect(urls[1]).toBe('https://www.hunqz.com/img/usr/original/0x0/token2.jpg');
-    expect(urls[2]).toBe('https://www.hunqz.com/img/usr/original/0x0/token3.jpg');
+  it("returns safe URLs even if not public when publicOnly is false", () => {
+    const urls = getImageUrls(profile, { publicOnly: false });
+
+    expect(urls).toEqual([
+      "https://www.hunqz.com/img/usr/original/0x0/token1.jpg", // NEUTRAL
+      "https://www.hunqz.com/img/usr/original/0x0/token2.jpg", // NEUTRAL but not public (included)
+      "https://www.hunqz.com/img/usr/original/0x0/token4.jpg", // APP_SAFE
+    ]);
   });
 
-  it('should return empty array when no pictures', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [],
-    };
-
-    const urls = getAllImageUrls(profile);
-    expect(urls).toHaveLength(0);
+  it("applies limit after filtering", () => {
+    const urls = getImageUrls(profile, { limit: 1 });
+    expect(urls).toHaveLength(1);
+    expect(urls[0]).toBe("https://www.hunqz.com/img/usr/original/0x0/token1.jpg");
   });
 
-  it('should return empty array when no public pictures and onlyPublic is true', () => {
-    const profile: Profile = {
-      id: '1',
-      name: 'Test Profile',
-      pictures: [
-        { id: '1', url_token: 'token1', width: 100, height: 100, rating: 'NEUTRAL', is_public: false },
-      ],
-    };
-
-    const urls = getAllImageUrls(profile, true);
-    expect(urls).toHaveLength(0);
+  it("returns an empty array when there are no pictures", () => {
+    const emptyProfile: Profile = { id: "1", name: "Test", pictures: [] };
+    expect(getImageUrls(emptyProfile)).toEqual([]);
   });
 });

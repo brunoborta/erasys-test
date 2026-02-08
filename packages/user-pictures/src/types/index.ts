@@ -16,8 +16,31 @@ export interface Profile {
   pictures: Picture[];
   [key: string]: unknown;
 }
+export type GetImageUrlsOptions = {
+  publicOnly?: boolean;
+  safeOnly?: boolean;
+  limit?: number;
+};
 
-export interface ApiConfig {
+export type FetchFn = (
+  input: RequestInfo | URL, 
+  init?: RequestInit
+) => Promise<Response>;
+
+export type ApiConfig = {
   baseUrl?: string;
   timeout?: number;
+  fetchFn?: FetchFn;
+};
+
+export class ApiError extends Error {
+  status: number;
+  url: string;
+
+  constructor(message: string, status: number, url: string) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+    this.url = url;
+  }
 }
