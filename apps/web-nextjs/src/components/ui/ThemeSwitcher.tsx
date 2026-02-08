@@ -14,7 +14,9 @@ export function ThemeSwitcher() {
 
   useEffect(() => {
     document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(theme);
+    if (theme === "light") {
+      document.documentElement.classList.add("light");
+    }
   }, [theme]);
 
   return (

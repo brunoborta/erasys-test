@@ -1,49 +1,49 @@
 @source ".";
 
 :root {
-  /* light mode */
-  --background: 226 232 240;
-  --background-secondary: 203 213 225;
-  --foreground: 15 23 42;
-  --foreground-secondary: 51 65 85;
-  --muted: 100 116 139;
-  --border: 148 163 184;
-  --card-bg: 248 250 252;
-  --card-hover: 226 232 240;
+  /* dark mode (default) */
+  --background: 15 23 42;
+  --background-secondary: 30 41 59;
+  --foreground: 248 250 252;
+  --foreground-secondary: 203 213 225;
+  --muted: 148 163 184;
+  --border: 51 65 85;
+  --card-bg: 51 65 85;
+  --card-hover: 66 75 105;
 
-  /* dark mode */
-  --dark-background: 15 23 42;
-  --dark-background-secondary: 30 41 59;
-  --dark-foreground: 248 250 252;
-  --dark-foreground-secondary: 203 213 225;
-  --dark-muted: 148 163 184;
-  --dark-border: 51 65 85;
-  --dark-card-bg: 51 65 85;
-  --dark-card-hover: 66 75 105;
+  /* light mode values */
+  --light-background: 226 232 240;
+  --light-background-secondary: 203 213 225;
+  --light-foreground: 15 23 42;
+  --light-foreground-secondary: 51 65 85;
+  --light-muted: 100 116 139;
+  --light-border: 148 163 184;
+  --light-card-bg: 248 250 252;
+  --light-card-hover: 226 232 240;
 }
 
-.dark {
-  --background: var(--dark-background);
-  --background-secondary: var(--dark-background-secondary);
-  --foreground: var(--dark-foreground);
-  --foreground-secondary: var(--dark-foreground-secondary);
-  --muted: var(--dark-muted);
-  --border: var(--dark-border);
-  --card-bg: var(--dark-card-bg);
-  --card-hover: var(--dark-card-hover);
+.light {
+  --background: var(--light-background);
+  --background-secondary: var(--light-background-secondary);
+  --foreground: var(--light-foreground);
+  --foreground-secondary: var(--light-foreground-secondary);
+  --muted: var(--light-muted);
+  --border: var(--light-border);
+  --card-bg: var(--light-card-bg);
+  --card-hover: var(--light-card-hover);
 }
 
-/* fallback: if no scheme is selected */
-@media (prefers-color-scheme: dark) {
+/* fallback: if no class is set, respect OS preference */
+@media (prefers-color-scheme: light) {
   :root:not(.light):not(.dark) {
-    --background: var(--dark-background);
-    --background-secondary: var(--dark-background-secondary);
-    --foreground: var(--dark-foreground);
-    --foreground-secondary: var(--dark-foreground-secondary);
-    --muted: var(--dark-muted);
-    --border: var(--dark-border);
-    --card-bg: var(--dark-card-bg);
-    --card-hover: var(--dark-card-hover);
+    --background: var(--light-background);
+    --background-secondary: var(--light-background-secondary);
+    --foreground: var(--light-foreground);
+    --foreground-secondary: var(--light-foreground-secondary);
+    --muted: var(--light-muted);
+    --border: var(--light-border);
+    --card-bg: var(--light-card-bg);
+    --card-hover: var(--light-card-hover);
   }
 }
 
