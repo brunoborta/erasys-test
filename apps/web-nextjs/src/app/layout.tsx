@@ -15,8 +15,29 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js App - Erasys Test",
-  description: "The Next.js  ",
+  title: "Profile Gallery - Erasys Test",
+  description: "Browse professional photo gallery and profile information. Discover high-quality images and detailed statistics.",
+  keywords: ["profile", "gallery", "photos", "portfolio"],
+  authors: [{ name: "Erasys" }],
+  openGraph: {
+    title: "Profile Gallery - Erasys Test",
+    description: "Browse professional photo gallery and profile information",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Profile Gallery - Erasys Test",
+    description: "Browse professional photo gallery and profile information",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
