@@ -49,7 +49,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-background to-background-secondary">
-      <main className="container mx-auto px-4 py-12">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-card-bg focus:text-foreground focus:border focus:border-border focus:outline-none"
+      >
+        Skip to content
+      </a>
+      <main id="main-content" className="container mx-auto px-4 py-12">
         <ProfileHeader name={profile.name} headline={profile.headline} profileId={profile.id} />
 
         <section aria-label="Photo Gallery">

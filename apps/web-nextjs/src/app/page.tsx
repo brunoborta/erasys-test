@@ -25,7 +25,7 @@ export default async function Home() {
       <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
 
       <ThemeSwitcher />
-      <main className="container mx-auto px-4 py-12">
+      <main id="main-content" className="container mx-auto px-4 py-12">
         <ProfileHeader name={profile.name} headline={profile.headline} profileId={profile.id} />
 
         <section aria-label="Photo Gallery">
