@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  getImageUrls,
+  buildImageUrl,
   getPublicPictures,
   type Profile,
 } from "@borta/user-pictures";
@@ -48,7 +48,6 @@ export default function App() {
     );
   }
 
-  const imageUrls = getImageUrls(profile);
   const publicPictures = getPublicPictures(profile);
 
   return (
@@ -69,7 +68,7 @@ export default function App() {
                   aspectRatio={3 / 4}
                   imageSlot={
                     <img
-                      src={imageUrls[index]}
+                      src={buildImageUrl(picture.url_token)}
                       alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
                       className="absolute inset-0 w-full h-full object-cover"
                       loading={index < 4 ? "eager" : "lazy"}
