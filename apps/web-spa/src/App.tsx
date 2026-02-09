@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  getAllImageUrls,
+  getImageUrls,
   getPublicPictures,
   type Profile,
 } from "@borta/user-pictures";
@@ -48,7 +48,7 @@ export default function App() {
     );
   }
 
-  const imageUrls = getAllImageUrls(profile, true);
+  const imageUrls = getImageUrls(profile);
   const publicPictures = getPublicPictures(profile);
 
   return (
@@ -64,9 +64,9 @@ export default function App() {
           <h2 className="sr-only">Photo Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {publicPictures.map((picture, index) => (
-              <figure key={picture.id}>
+              <figure className="w-full" key={picture.id}>
                 <PhotoCard
-                  aspectRatio={picture.width / picture.height}
+                  aspectRatio={3 / 4}
                   imageSlot={
                     <img
                       src={imageUrls[index]}

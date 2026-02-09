@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getAllImageUrls, getPublicPictures } from "@borta/user-pictures";
+import { getImageUrls, getPublicPictures } from "@borta/user-pictures";
 import { PhotoCard, MasonryGrid, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const profile = await getProfile();
-  const imageUrls = getAllImageUrls(profile, true);
+  const imageUrls = getImageUrls(profile);
   const publicPictures = getPublicPictures(profile);
 
   // Generate JSON-LD structured data for SEO

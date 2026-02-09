@@ -2,12 +2,12 @@
 export { getProfile } from './api/index.js';
 
 // Utility
-export { 
-  buildImageUrl, 
-  getPublicPictures, 
+export {
+  buildImageUrl,
+  getPublicPictures,
   getSafePictures,
   getPreviewImageUrl,
-  getAllImageUrls
+  getImageUrls
 } from './utils/index.js';
 
 // Types

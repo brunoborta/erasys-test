@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { Profile } from "@borta/user-pictures";
-import { getAllImageUrls, getPublicPictures } from "@borta/user-pictures";
+import { getImageUrls, getPublicPictures } from "@borta/user-pictures";
 
 export function generateProfileMetadata(profile: Profile): Metadata {
   const publicPictures = getPublicPictures(profile);
@@ -14,7 +14,7 @@ export function generateProfileMetadata(profile: Profile): Metadata {
       type: "profile",
       images: publicPictures.length > 0 ? [
         {
-          url: getAllImageUrls(profile, true)[0],
+          url: getImageUrls(profile)[0],
           width: publicPictures[0].width,
           height: publicPictures[0].height,
           alt: `${profile.name} - Featured Photo`,
@@ -31,7 +31,7 @@ export function generateProfileMetadata(profile: Profile): Metadata {
 
 export function generateJsonLDData(profile: Profile) {
   const publicPictures = getPublicPictures(profile);
-  const imageUrls = getAllImageUrls(profile, true);
+  const imageUrls = getImageUrls(profile);
 
   return {
     "@context": "https://schema.org",
