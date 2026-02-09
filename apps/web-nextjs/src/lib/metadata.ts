@@ -10,22 +10,24 @@ export function generateProfileMetadata(profile: Profile): Metadata {
   return {
     title: profile.name,
     description,
-    openGraph: {
-      title: `${profile.name} | Erasys Test`,
-      description,
-      type: "profile",
-      images:
-        publicPictures.length > 0
+    openGraph: (() => {
+      const featured = publicPictures[0];
+      return {
+        title: `${profile.name} | Erasys Test`,
+        description,
+        type: "profile" as const,
+        images: featured
           ? [
               {
-                url: buildImageUrl(publicPictures[0].url_token),
-                width: publicPictures[0].width,
-                height: publicPictures[0].height,
+                url: buildImageUrl(featured.url_token),
+                width: featured.width,
+                height: featured.height,
                 alt: `${profile.name} - Featured Photo`,
               },
             ]
           : [],
-    },
+      };
+    })(),
     twitter: {
       card: "summary_large_image",
       title: `${profile.name} | Erasys Test`,

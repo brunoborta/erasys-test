@@ -3,6 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": ["src/**", "tsconfig.json", "tsup.config.ts", "package.json"],
       "outputs": ["dist/**", ".next/**", "build/**"]
     },
     "dev": {
@@ -10,8 +11,19 @@
       "persistent": true
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "test/**", "vitest.config.ts", "package.json"],
+      "outputs": ["coverage/**"]
     },
-    "lint": {}
+    "lint": {
+      "inputs": ["src/**", "eslint.config.*", ".prettierrc"]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**", "tsconfig.json", "package.json"]
+    },
+    "clean": {
+      "cache": false
+    }
   }
 }

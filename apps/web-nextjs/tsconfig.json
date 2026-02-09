@@ -7,7 +7,7 @@
     "jsx": "react-jsx",
     "noEmit": true,
     "incremental": true,
-    "noUncheckedIndexedAccess": false,
+    "noUncheckedIndexedAccess": true,
     "declaration": false,
     "declarationMap": false,
     "plugins": [{ "name": "next" }],
