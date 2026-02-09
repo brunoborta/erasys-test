@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@borta/web-ui": "^1.0.0",
-    "@borta/user-pictures": "^1.0.0",
+    "@borta/web-ui": "^1.1.0",
+    "@borta/user-pictures": "^1.2.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

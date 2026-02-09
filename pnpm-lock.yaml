@@ -18,14 +18,14 @@ importers:
   apps/web-nextjs:
     dependencies:
       '@borta/user-pictures':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.2.0
+        version: 1.2.0
       '@borta/web-ui':
-        specifier: ^1.0.0
-        version: 1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.1.0
+        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       next:
         specifier: 16.1.6
-        version: 16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -64,11 +64,11 @@ importers:
   apps/web-spa:
     dependencies:
       '@borta/user-pictures':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.2.0
+        version: 1.2.0
       '@borta/web-ui':
-        specifier: ^1.0.0
-        version: 1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.1.0
+        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -240,11 +240,11 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@borta/user-pictures@1.0.0':
-    resolution: {integrity: sha512-aik7jHAoebZD//XssqlmxYIH54WxLbCv2UgzshqBBOzqsDLxiQheJ/FVnehbou91AaOUzd1K8huq+yJucHdhNA==}
+  '@borta/user-pictures@1.2.0':
+    resolution: {integrity: sha512-hs3Kva2PDBP6lzBv2Uywh5mDwv/8eooi3WElOhRfPtZZWIUiq3hHV+ewv8B3HuxjLtaT8ELzMS/Ejwi/XzPVzw==}
 
-  '@borta/web-ui@1.0.0':
-    resolution: {integrity: sha512-F6xkmgfKUmQemb+QJOuLOv/W+T74EZz2GCQzl7Kp1lF1TcZzQyfzFKhGAxKsAns/11s4uS+u9w7MLgNciOCdoQ==}
+  '@borta/web-ui@1.1.0':
+    resolution: {integrity: sha512-z0wDazoAyQDoAziRwsm7i4MIzSuN4p78cfBMjfQoyd6B9Cd5iP1RlP7COrzp/42e31yr5wKfVluwVwUZeWxH0Q==}
     peerDependencies:
       react: '>=19'
       react-dom: '>=19'
@@ -3263,9 +3263,9 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@borta/user-pictures@1.0.0': {}
+  '@borta/user-pictures@1.2.0': {}
 
-  '@borta/web-ui@1.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
+  '@borta/web-ui@1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
@@ -5474,7 +5474,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 16.1.6
       '@swc/helpers': 0.5.15
@@ -5483,7 +5483,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      styled-jsx: 5.1.6(@babel/core@7.29.0)(react@19.2.3)
+      styled-jsx: 5.1.6(react@19.2.3)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.1.6
       '@next/swc-darwin-x64': 16.1.6
@@ -5953,12 +5953,10 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  styled-jsx@5.1.6(@babel/core@7.29.0)(react@19.2.3):
+  styled-jsx@5.1.6(react@19.2.3):
     dependencies:
       client-only: 0.0.1
       react: 19.2.3
-    optionalDependencies:
-      '@babel/core': 7.29.0
 
   sucrase@3.35.1:
     dependencies:
