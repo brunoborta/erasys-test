@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { buildImageUrl, getSafePictures } from "@borta/user-pictures";
+import { buildImageUrl, getPublicPictures } from "@borta/user-pictures";
 import { PhotoCard, MasonryGrid, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const profile = await getProfile();
-  const safePictures = getSafePictures(profile);
+  const publicPictures = getPublicPictures(profile);
 
   // Generate JSON-LD structured data for SEO
   const structuredData = generateJsonLDData(profile);
@@ -37,7 +37,7 @@ export default async function Home() {
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
           <MasonryGrid>
-            {safePictures.map((picture, index) => (
+            {publicPictures.map((picture, index) => (
               <figure className="mb-4 break-inside-avoid" key={picture.id}>
                 <PhotoCard
                   aspectRatio={picture.width / picture.height}
@@ -72,7 +72,7 @@ export default async function Home() {
         </section>
 
         <StatsSection
-          publicCount={safePictures.length}
+          publicCount={publicPictures.length}
           totalCount={profile.pictures.length}
         />
       </main>
