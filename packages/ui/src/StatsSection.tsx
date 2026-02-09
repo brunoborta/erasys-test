@@ -1,18 +1,18 @@
 import { StatCard } from './StatCard';
 
 interface StatsSectionProps {
-  publicCount: number;
-  totalCount: number;
+  stats: { value: number; label: string }[];
 }
 
-export function StatsSection({ publicCount, totalCount }: StatsSectionProps) {
+export function StatsSection({ stats }: StatsSectionProps) {
   return (
-    <section 
+    <section
       className="mt-12 flex justify-center gap-8 text-center"
       aria-label="Photo Gallery Statistics"
     >
-      <StatCard value={publicCount} label="Public Photos" />
-      <StatCard value={totalCount} label="Total Photos" />
+      {stats.map((stat) => (
+        <StatCard key={stat.label} value={stat.value} label={stat.label} />
+      ))}
     </section>
   );
 }

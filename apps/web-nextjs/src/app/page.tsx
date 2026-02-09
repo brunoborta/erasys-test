@@ -71,10 +71,10 @@ export default async function Home() {
           </MasonryGrid>
         </section>
 
-        <StatsSection
-          publicCount={publicPictures.length}
-          totalCount={profile.pictures.length}
-        />
+        <StatsSection stats={[
+          { value: publicPictures.length, label: "Public Photos" },
+          { value: profile.pictures.length, label: "Total Photos" },
+        ]} />
       </main>
     </div>
   );

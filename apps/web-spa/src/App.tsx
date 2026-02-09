@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   buildImageUrl,
   getPublicPictures,
+  getSafePictures,
   type Profile,
 } from "@borta/user-pictures";
 import {
@@ -51,6 +52,7 @@ export default function App() {
     );
   }
 
+  const safePictures = getSafePictures(profile);
   const publicPictures = getPublicPictures(profile);
 
   return (
@@ -65,7 +67,7 @@ export default function App() {
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {publicPictures.map((picture, index) => (
+            {safePictures.map((picture, index) => (
               <figure className="w-full" key={picture.id}>
                 <PhotoCard
                   aspectRatio={3 / 4}
@@ -95,10 +97,11 @@ export default function App() {
           </div>
         </section>
 
-        <StatsSection
-          publicCount={publicPictures.length}
-          totalCount={profile.pictures.length}
-        />
+        <StatsSection stats={[
+          { value: safePictures.length, label: "Safe Photos" },
+          { value: publicPictures.length, label: "Public Photos" },
+          { value: profile.pictures.length, label: "Total Photos" },
+        ]} />
       </main>
     </div>
   );
