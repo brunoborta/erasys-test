@@ -3,7 +3,7 @@ export interface Picture {
   url_token: string;
   width: number;
   height: number;
-  rating: 'NEUTRAL' | 'EROTIC' | 'APP_SAFE';
+  rating: "NEUTRAL" | "EROTIC" | "APP_SAFE";
   is_public: boolean;
   comment?: string;
 }
@@ -22,10 +22,7 @@ export type GetImageUrlsOptions = {
   limit?: number;
 };
 
-export type FetchFn = (
-  input: RequestInfo | URL, 
-  init?: RequestInit
-) => Promise<Response>;
+export type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
 export type ApiConfig = {
   baseUrl?: string;
@@ -39,7 +36,7 @@ export class ApiError extends Error {
 
   constructor(message: string, status: number, url: string) {
     super(message);
-    this.name = 'ApiError';
+    this.name = "ApiError";
     this.status = status;
     this.url = url;
   }

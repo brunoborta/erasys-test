@@ -1,13 +1,13 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://erasys-test-web-nextjs.vercel.app';
-  
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://erasys-test-web-nextjs.vercel.app";
+
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: "daily",
       priority: 1,
     },
   ];

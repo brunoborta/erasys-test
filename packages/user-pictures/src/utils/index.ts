@@ -19,10 +19,7 @@ export const getSafePictures = (profile: Profile): Picture[] =>
 export const getPreviewImageUrl = (profile: Profile): string | null =>
   profile.preview_pic ? buildImageUrl(profile.preview_pic.url_token) : null;
 
-export const getImageUrls = (
-  profile: Profile,
-  options: GetImageUrlsOptions = {}
-): string[] => {
+export const getImageUrls = (profile: Profile, options: GetImageUrlsOptions = {}): string[] => {
   const { publicOnly = true, safeOnly = true, limit } = options;
 
   let pics = profile.pictures;

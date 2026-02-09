@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface PhotoCardProps {
   imageSlot: ReactNode;
@@ -8,30 +8,30 @@ interface PhotoCardProps {
   className?: string;
 }
 
-export function PhotoCard({ 
-  imageSlot, 
-  overlaySlot, 
-  captionSlot, 
+export function PhotoCard({
+  imageSlot,
+  overlaySlot,
+  captionSlot,
   aspectRatio,
-  className 
+  className,
 }: PhotoCardProps) {
   return (
     <>
-      <div 
-        className={`group relative overflow-hidden rounded-lg bg-card-bg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-out ${className || ''}`}
+      <div
+        className={`group relative overflow-hidden rounded-lg bg-card-bg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-out ${className || ""}`}
       >
-        <div 
-          className="relative" 
-          style={{ 
-            aspectRatio: `${aspectRatio}` 
+        <div
+          className="relative"
+          style={{
+            aspectRatio: `${aspectRatio}`,
           }}
         >
           {imageSlot}
         </div>
-        
+
         {overlaySlot}
       </div>
-      
+
       {captionSlot}
     </>
   );

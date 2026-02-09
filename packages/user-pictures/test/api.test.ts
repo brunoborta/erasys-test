@@ -22,9 +22,9 @@ const mockProfileData: Profile = {
 
 describe("getProfile", () => {
   it("fetches the default profile using default baseUrl and slug", async () => {
-    const fetchFn = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify(mockProfileData), { status: 200 })
-    );
+    const fetchFn = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify(mockProfileData), { status: 200 }));
 
     const profile = await getProfile(undefined, { fetchFn });
 
@@ -37,9 +37,9 @@ describe("getProfile", () => {
   });
 
   it("fetches profile using a custom slug", async () => {
-    const fetchFn = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify(mockProfileData), { status: 200 })
-    );
+    const fetchFn = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify(mockProfileData), { status: 200 }));
 
     await getProfile("customslug", { fetchFn });
 
@@ -50,16 +50,13 @@ describe("getProfile", () => {
   });
 
   it("respects config.baseUrl", async () => {
-    const fetchFn = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify(mockProfileData), { status: 200 })
-    );
+    const fetchFn = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify(mockProfileData), { status: 200 }));
 
     await getProfile("msescortplus", { baseUrl: "/api", fetchFn });
 
-    expect(fetchFn).toHaveBeenCalledWith(
-      "/api/profiles/msescortplus",
-      expect.any(Object)
-    );
+    expect(fetchFn).toHaveBeenCalledWith("/api/profiles/msescortplus", expect.any(Object));
   });
 
   it("throws ApiError with status and url on non-ok HTTP responses", async () => {

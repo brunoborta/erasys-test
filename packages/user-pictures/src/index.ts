@@ -1,5 +1,5 @@
 // API
-export { getProfile } from './api/index.js';
+export { getProfile } from "./api/index.js";
 
 // Utility
 export {
@@ -7,8 +7,8 @@ export {
   getPublicPictures,
   getSafePictures,
   getPreviewImageUrl,
-  getImageUrls
-} from './utils/index.js';
+  getImageUrls,
+} from "./utils/index.js";
 
 // Types
-export type { ApiConfig, Profile, Picture } from './types/index.js';
+export type { ApiConfig, Profile, Picture } from "./types/index.js";

@@ -26,11 +26,7 @@ export const getProfile = async (
     });
 
     if (!response.ok) {
-      throw new ApiError(
-        "Request failed",
-        response.status,
-        url
-      );
+      throw new ApiError("Request failed", response.status, url);
     }
 
     const data = (await response.json()) as Profile;

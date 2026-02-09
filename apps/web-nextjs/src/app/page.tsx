@@ -22,17 +22,11 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-linear-to-br from-background to-background-secondary">
       {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
 
       <ThemeSwitcher />
       <main className="container mx-auto px-4 py-12">
-        <ProfileHeader
-          name={profile.name}
-          headline={profile.headline}
-          profileId={profile.id}
-        />
+        <ProfileHeader name={profile.name} headline={profile.headline} profileId={profile.id} />
 
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
@@ -62,7 +56,8 @@ export default async function Home() {
                   }
                   captionSlot={
                     <figcaption className="sr-only">
-                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by {picture.height} pixels
+                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
+                      {picture.height} pixels
                     </figcaption>
                   }
                 />
@@ -71,10 +66,12 @@ export default async function Home() {
           </MasonryGrid>
         </section>
 
-        <StatsSection stats={[
-          { value: publicPictures.length, label: "Public Photos" },
-          { value: profile.pictures.length, label: "Total Photos" },
-        ]} />
+        <StatsSection
+          stats={[
+            { value: publicPictures.length, label: "Public Photos" },
+            { value: profile.pictures.length, label: "Total Photos" },
+          ]}
+        />
       </main>
     </div>
   );

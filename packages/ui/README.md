@@ -5,6 +5,7 @@ Shared UI components for the Erasys Test application.
 ## Requirements
 
 This package requires the consuming application to have:
+
 - **React 19+**
 - **Tailwind CSS v4** (configured with PostCSS)
 
@@ -31,6 +32,7 @@ You **MUST** import the package's global CSS in your app's entry point CSS file 
 ```
 
 **Why?** The package's `globals.css` contains:
+
 - Default theme variables (light/dark mode)
 - Tailwind v4 `@theme` mappings
 - Ensures components work out-of-the-box
@@ -61,7 +63,7 @@ export function Gallery() {
   return (
     <MasonryGrid>
       <PhotoCard
-        aspectRatio={16/9}
+        aspectRatio={16 / 9}
         imageSlot={<img src="..." />}
         overlaySlot={<Overlay title="Hello" />}
       />
@@ -76,29 +78,29 @@ The package uses CSS custom properties for theming. **Dark mode is the default**
 
 ### CSS Variables Reference
 
-| Variable | Dark default (`:root`) | Light value (`--light-*`) | Used by |
-|---|---|---|---|
-| `--background` | `15 23 42` | `226 232 240` | Page background |
-| `--background-secondary` | `30 41 59` | `203 213 225` | Gradient endpoint |
-| `--foreground` | `248 250 252` | `15 23 42` | Primary text |
-| `--foreground-secondary` | `203 213 225` | `51 65 85` | Secondary text, profile headline |
-| `--muted` | `148 163 184` | `100 116 139` | Muted/dimmed text (ProfileHeader ID) |
-| `--border` | `51 65 85` | `148 163 184` | Card and button borders |
-| `--card-bg` | `51 65 85` | `248 250 252` | StatCard background |
-| `--card-hover` | `66 75 105` | `226 232 240` | StatCard hover background |
+| Variable                 | Dark default (`:root`) | Light value (`--light-*`) | Used by                              |
+| ------------------------ | ---------------------- | ------------------------- | ------------------------------------ |
+| `--background`           | `15 23 42`             | `226 232 240`             | Page background                      |
+| `--background-secondary` | `30 41 59`             | `203 213 225`             | Gradient endpoint                    |
+| `--foreground`           | `248 250 252`          | `15 23 42`                | Primary text                         |
+| `--foreground-secondary` | `203 213 225`          | `51 65 85`                | Secondary text, profile headline     |
+| `--muted`                | `148 163 184`          | `100 116 139`             | Muted/dimmed text (ProfileHeader ID) |
+| `--border`               | `51 65 85`             | `148 163 184`             | Card and button borders              |
+| `--card-bg`              | `51 65 85`             | `248 250 252`             | StatCard background                  |
+| `--card-hover`           | `66 75 105`            | `226 232 240`             | StatCard hover background            |
 
 These map to Tailwind utilities via `@theme inline`:
 
-| CSS Variable | Tailwind class | Example |
-|---|---|---|
-| `--color-background` | `bg-background` | `<div class="bg-background">` |
-| `--color-background-secondary` | `bg-background-secondary` | gradient `to-background-secondary` |
-| `--color-foreground` | `text-foreground` | `<p class="text-foreground">` |
+| CSS Variable                   | Tailwind class              | Example                                    |
+| ------------------------------ | --------------------------- | ------------------------------------------ |
+| `--color-background`           | `bg-background`             | `<div class="bg-background">`              |
+| `--color-background-secondary` | `bg-background-secondary`   | gradient `to-background-secondary`         |
+| `--color-foreground`           | `text-foreground`           | `<p class="text-foreground">`              |
 | `--color-foreground-secondary` | `text-foreground-secondary` | `<span class="text-foreground-secondary">` |
-| `--color-muted` | `text-muted` | `<small class="text-muted">` |
-| `--color-border` | `border-border` | `<div class="border border-border">` |
-| `--color-card-bg` | `bg-card-bg` | `<div class="bg-card-bg">` |
-| `--color-card-hover` | `bg-card-hover` | `hover:bg-card-hover` |
+| `--color-muted`                | `text-muted`                | `<small class="text-muted">`               |
+| `--color-border`               | `border-border`             | `<div class="border border-border">`       |
+| `--color-card-bg`              | `bg-card-bg`                | `<div class="bg-card-bg">`                 |
+| `--color-card-hover`           | `bg-card-hover`             | `hover:bg-card-hover`                      |
 
 ### How theme switching works
 
@@ -116,8 +118,8 @@ These map to Tailwind utilities via `@theme inline`:
 @import "@borta/web-ui/globals.css";
 
 :root {
-  --background: 30 15 5;            /* custom dark (default) */
-  --light-background: 255 245 235;  /* custom light */
+  --background: 30 15 5; /* custom dark (default) */
+  --light-background: 255 245 235; /* custom light */
   /* override both --xxx and --light-xxx for each variable */
 }
 ```

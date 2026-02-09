@@ -5,12 +5,7 @@ import {
   getSafePictures,
   type Profile,
 } from "@borta/user-pictures";
-import {
-  PhotoCard,
-  Overlay,
-  ProfileHeader,
-  StatsSection,
-} from "@borta/web-ui";
+import { PhotoCard, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import "./globals.css";
 
 const API_URL = "/api/profile/msescortplus";
@@ -35,9 +30,7 @@ export default function App() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-background to-background-secondary">
-        <p className="text-foreground-secondary text-lg">
-          Failed to load profile: {error}
-        </p>
+        <p className="text-foreground-secondary text-lg">Failed to load profile: {error}</p>
       </div>
     );
   }
@@ -45,9 +38,7 @@ export default function App() {
   if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-background to-background-secondary">
-        <p className="text-foreground-secondary text-lg animate-pulse">
-          Loading...
-        </p>
+        <p className="text-foreground-secondary text-lg animate-pulse">Loading...</p>
       </div>
     );
   }
@@ -58,17 +49,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-linear-to-br from-background to-background-secondary">
       <main className="container mx-auto px-4 py-12">
-        <ProfileHeader
-          name={profile.name}
-          headline={profile.headline}
-          profileId={profile.id}
-        />
+        <ProfileHeader name={profile.name} headline={profile.headline} profileId={profile.id} />
 
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {safePictures.map((picture, index) => (
-              <figure className="w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] lg:w-[calc(25%-0.75rem)]" key={picture.id}>
+              <figure
+                className="w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] lg:w-[calc(25%-0.75rem)]"
+                key={picture.id}
+              >
                 <PhotoCard
                   aspectRatio={3 / 4}
                   imageSlot={
@@ -87,8 +77,8 @@ export default function App() {
                   }
                   captionSlot={
                     <figcaption className="sr-only">
-                      Photo {index + 1} by {profile.name}, dimensions{" "}
-                      {picture.width} by {picture.height} pixels
+                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
+                      {picture.height} pixels
                     </figcaption>
                   }
                 />
@@ -97,11 +87,13 @@ export default function App() {
           </div>
         </section>
 
-        <StatsSection stats={[
-          { value: safePictures.length, label: "Safe Photos" },
-          { value: publicPictures.length, label: "Public Photos" },
-          { value: profile.pictures.length, label: "Total Photos" },
-        ]} />
+        <StatsSection
+          stats={[
+            { value: safePictures.length, label: "Safe Photos" },
+            { value: publicPictures.length, label: "Public Photos" },
+            { value: profile.pictures.length, label: "Total Photos" },
+          ]}
+        />
       </main>
     </div>
   );

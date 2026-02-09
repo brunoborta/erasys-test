@@ -1,5 +1,7 @@
 # Task
+
 ## Set up a monorepo architecture containing 3 modules:
+
 - A Next.js web application (it requires SSR).
 - A simpler React Single-Page Application (SPA), rendered on the client side.
 - A shared module to fetch user pictures from a remote server.

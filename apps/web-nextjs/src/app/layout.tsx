@@ -6,14 +6,14 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
-  display: 'swap',
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "700"],
-  display: 'swap',
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -53,11 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${roboto.variable} ${playfair.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${roboto.variable} ${playfair.variable} antialiased`}>{children}</body>
     </html>
   );
 }

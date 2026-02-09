@@ -9,8 +9,8 @@ export function ThemeSwitcher() {
   const [theme, setTheme] = useState<Theme>("dark");
 
   const toggleTheme = () => {
-    setTheme((t) => (t === "light" ? "dark" : "light"))
-  }
+    setTheme((t) => (t === "light" ? "dark" : "light"));
+  };
 
   useEffect(() => {
     document.documentElement.classList.remove("light", "dark");
@@ -26,7 +26,7 @@ export function ThemeSwitcher() {
       aria-label="Theme Switcher: Light and Dark themes"
       aria-pressed={theme === "dark"}
     >
-    <ThemeIcon theme={theme} />
+      <ThemeIcon theme={theme} />
     </button>
   );
 }
