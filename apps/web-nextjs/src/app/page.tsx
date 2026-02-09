@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getImageUrls, getPublicPictures } from "@borta/user-pictures";
+import { buildImageUrl, getSafePictures } from "@borta/user-pictures";
 import { PhotoCard, MasonryGrid, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 
@@ -14,37 +14,36 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const profile = await getProfile();
-  const imageUrls = getImageUrls(profile);
-  const publicPictures = getPublicPictures(profile);
+  const safePictures = getSafePictures(profile);
 
   // Generate JSON-LD structured data for SEO
   const structuredData = generateJsonLDData(profile);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-background-secondary">
+    <div className="min-h-screen bg-linear-to-br from-background to-background-secondary">
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
       </script>
-      
+
       <ThemeSwitcher />
       <main className="container mx-auto px-4 py-12">
-        <ProfileHeader 
-        name={profile.name}
-        headline={profile.headline}
-        profileId={profile.id}
-      />
-        
+        <ProfileHeader
+          name={profile.name}
+          headline={profile.headline}
+          profileId={profile.id}
+        />
+
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
           <MasonryGrid>
-            {publicPictures.map((picture, index) => (
+            {safePictures.map((picture, index) => (
               <figure className="mb-4 break-inside-avoid" key={picture.id}>
                 <PhotoCard
                   aspectRatio={picture.width / picture.height}
                   imageSlot={
                     <Image
-                      src={imageUrls[index]}
+                      src={buildImageUrl(picture.url_token)}
                       alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
                       fill
                       className="object-cover"
@@ -72,8 +71,8 @@ export default async function Home() {
           </MasonryGrid>
         </section>
 
-        <StatsSection 
-          publicCount={publicPictures.length}
+        <StatsSection
+          publicCount={safePictures.length}
           totalCount={profile.pictures.length}
         />
       </main>
