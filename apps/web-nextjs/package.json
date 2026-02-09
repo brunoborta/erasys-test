@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@borta/web-ui": "^1.1.0",
+    "@borta/web-ui": "^1.2.0",
     "@borta/user-pictures": "^1.2.0",
     "next": "16.1.6",
     "react": "19.2.3",

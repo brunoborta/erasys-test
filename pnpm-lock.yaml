@@ -21,8 +21,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@borta/web-ui':
-        specifier: ^1.1.0
-        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.2.0
+        version: 1.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       next:
         specifier: 16.1.6
         version: 16.1.6(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -67,8 +67,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       '@borta/web-ui':
-        specifier: ^1.1.0
-        version: 1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.2.0
+        version: 1.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -243,8 +243,8 @@ packages:
   '@borta/user-pictures@1.2.0':
     resolution: {integrity: sha512-hs3Kva2PDBP6lzBv2Uywh5mDwv/8eooi3WElOhRfPtZZWIUiq3hHV+ewv8B3HuxjLtaT8ELzMS/Ejwi/XzPVzw==}
 
-  '@borta/web-ui@1.1.0':
-    resolution: {integrity: sha512-z0wDazoAyQDoAziRwsm7i4MIzSuN4p78cfBMjfQoyd6B9Cd5iP1RlP7COrzp/42e31yr5wKfVluwVwUZeWxH0Q==}
+  '@borta/web-ui@1.2.0':
+    resolution: {integrity: sha512-eg0gl86bZlRxxNAdwIeraX0yOKKqHC1aKzG5fcCH1A8maxdcLo3RKgxF7El8rzgXz6bTLYmqOSXjl2DsiuqQLw==}
     peerDependencies:
       react: '>=19'
       react-dom: '>=19'
@@ -3265,7 +3265,7 @@ snapshots:
 
   '@borta/user-pictures@1.2.0': {}
 
-  '@borta/web-ui@1.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
+  '@borta/web-ui@1.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
