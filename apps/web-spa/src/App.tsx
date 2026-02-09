@@ -8,7 +8,8 @@ import {
 import { PhotoCard, Overlay, ProfileHeader, StatsSection } from "@borta/web-ui";
 import "./globals.css";
 
-const API_URL = "/api/profile/msescortplus";
+const slug = import.meta.env.VITE_PROFILE_SLUG || "msescortplus";
+const API_URL = `/api/profile/${slug}`;
 
 export default function App() {
   const [profile, setProfile] = useState<Profile | null>(null);
