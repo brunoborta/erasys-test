@@ -24,7 +24,10 @@ export default function App() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then(setProfile)
+      .then((data: Profile) => {
+        setProfile(data);
+        document.title = `${data.name} | Erasys Test`;
+      })
       .catch((err) => setError(err.message));
   }, []);
 
