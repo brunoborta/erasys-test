@@ -17,8 +17,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Profile Gallery - Erasys Test",
-  description: "Browse professional photo gallery and profile information. Discover high-quality images and detailed statistics.",
+  title: {
+    default: "Profile Gallery - Erasys Test",
+    template: "%s | Erasys Test",
+  },
+  description: "Browse professional photo gallery and profile information.",
   keywords: ["profile", "gallery", "photos", "portfolio"],
   authors: [{ name: 'Bruno "Borta" Bortagaray' }],
   openGraph: {

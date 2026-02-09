@@ -1,37 +1,37 @@
 import type { Metadata } from "next";
 import type { Profile } from "@borta/user-pictures";
-import { getImageUrls, getPublicPictures } from "@borta/user-pictures";
+import { buildImageUrl, getSafePictures } from "@borta/user-pictures";
 
 export function generateProfileMetadata(profile: Profile): Metadata {
-  const publicPictures = getPublicPictures(profile);
-  
+  const safePictures = getSafePictures(profile);
+  const description = profile.headline || `View ${profile.name}'s photo gallery with ${safePictures.length} photos`;
+
   return {
-    title: `${profile.name} - Profile Gallery`,
-    description: profile.headline || `View ${profile.name}'s photo gallery with ${publicPictures.length} public photos`,
+    title: profile.name,
+    description,
     openGraph: {
-      title: `${profile.name} - Profile Gallery`,
-      description: profile.headline || `View ${profile.name}'s photo gallery`,
+      title: `${profile.name} | Erasys Test`,
+      description,
       type: "profile",
-      images: publicPictures.length > 0 ? [
+      images: safePictures.length > 0 ? [
         {
-          url: getImageUrls(profile)[0],
-          width: publicPictures[0].width,
-          height: publicPictures[0].height,
+          url: buildImageUrl(safePictures[0].url_token),
+          width: safePictures[0].width,
+          height: safePictures[0].height,
           alt: `${profile.name} - Featured Photo`,
         }
       ] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${profile.name} - Profile Gallery`,
-      description: profile.headline || `View ${profile.name}'s photo gallery`,
+      title: `${profile.name} | Erasys Test`,
+      description,
     },
   };
 }
 
 export function generateJsonLDData(profile: Profile) {
-  const publicPictures = getPublicPictures(profile);
-  const imageUrls = getImageUrls(profile);
+  const safePictures = getSafePictures(profile);
 
   return {
     "@context": "https://schema.org",
@@ -42,12 +42,12 @@ export function generateJsonLDData(profile: Profile) {
       "description": profile.headline,
       "identifier": profile.id,
     },
-    "image": publicPictures.length > 0 ? {
+    "image": safePictures.length > 0 ? {
       "@type": "ImageGallery",
-      "numberOfItems": publicPictures.length,
-      "image": publicPictures.slice(0, 10).map((pic, idx) => ({
+      "numberOfItems": safePictures.length,
+      "image": safePictures.slice(0, 10).map((pic, idx) => ({
         "@type": "ImageObject",
-        "contentUrl": imageUrls[idx],
+        "contentUrl": buildImageUrl(pic.url_token),
         "width": pic.width,
         "height": pic.height,
         "caption": `${profile.name} - Photo ${idx + 1}`,
