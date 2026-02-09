@@ -2,6 +2,16 @@
   "name": "@borta/user-pictures",
   "version": "1.2.0",
   "description": "Shared user pictures SDK for Erasys Test",
+  "license": "MIT",
+  "keywords": [
+    "erasys",
+    "user-pictures",
+    "sdk",
+    "brunoborta"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "publishConfig": {
     "access": "public"
   },

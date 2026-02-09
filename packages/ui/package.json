@@ -2,6 +2,26 @@
   "name": "@borta/web-ui",
   "version": "1.2.0",
   "description": "Shared UI components for Erasys Test",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoborta/erasys-test.git",
+    "directory": "packages/ui"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "erasys",
+    "ui",
+    "components",
+    "react",
+    "tailwindcss",
+    "brunoborta"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

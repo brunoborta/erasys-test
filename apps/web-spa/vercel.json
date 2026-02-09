@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://erasys-test-web-nextjs.vercel.app/api/:path*" }
+  ]
+}
