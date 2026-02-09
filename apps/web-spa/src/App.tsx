@@ -66,9 +66,9 @@ export default function App() {
 
         <section aria-label="Photo Gallery">
           <h2 className="sr-only">Photo Gallery</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {safePictures.map((picture, index) => (
-              <figure className="w-full" key={picture.id}>
+              <figure className="w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] lg:w-[calc(25%-0.75rem)]" key={picture.id}>
                 <PhotoCard
                   aspectRatio={3 / 4}
                   imageSlot={
