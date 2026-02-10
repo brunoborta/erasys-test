@@ -24,7 +24,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ["packages/*/src/**/*.tsx", "apps/web-spa/src/**/*.tsx"],
+    files: ["packages/*/src/**/*.tsx", "apps/web-spa/src/**/*.tsx", "apps/mobile/**/*.tsx"],
     plugins: {
       react,
       "react-hooks": reactHooks,

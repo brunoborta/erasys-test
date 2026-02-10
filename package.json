@@ -7,6 +7,9 @@
   "private": true,
   "scripts": {
     "dev": "turbo run dev --parallel",
+    "dev:next": "pnpm --filter web-nextjs dev",
+    "dev:spa": "pnpm --filter web-spa dev",
+    "dev:mobile": "pnpm --filter mobile start",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
