@@ -130,6 +130,7 @@ The `docs/` folder contains detailed reference material:
 | [DECISIONS.md](docs/DECISIONS.md)                             | Architectural decisions with rationale — useful for interview discussions                 |
 | [CONFIG_REFERENCE.md](docs/CONFIG_REFERENCE.md)               | Every config file in the repo explained (turbo, tsconfig, tsup, vitest, eslint, prettier) |
 | [CONFIG_REFERENCE_MOBILE.md](docs/CONFIG_REFERENCE_MOBILE.md) | Mobile-specific config reference (metro, app.json, expo)                                  |
+| [PERFORMANCE.md](docs/PERFORMANCE.md)                         | Next.js performance optimizations (caching, images, fonts, lazy loading)                  |
 | [RELEASE_WORKFLOW.md](docs/RELEASE_WORKFLOW.md)               | How to version and publish packages with Changesets                                       |
 | [TOOLS.md](docs/TOOLS.md)                                     | Dev tooling overview (ESLint, Prettier, Husky, lint-staged)                               |
 | [TSCONFIG_REFERENCE.md](docs/TSCONFIG_REFERENCE.md)           | TypeScript configuration details per project                                              |
