@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite build)",
+      "Bash(pnpm --filter @borta/web-ui build:*)",
+      "Bash(pnpm --filter web-nextjs build:*)",
+      "Bash(pnpm --filter web-spa build:*)",
+      "Bash(git -C \"C:\\\\Users\\\\khali\\\\Documents\\\\Projects\\\\erasys-test\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\khali\\\\Documents\\\\Projects\\\\erasys-test\" diff)",
+      "Bash(pnpm dev)",
+      "Bash(wc:*)",
+      "Bash(pnpm list:*)",
+      "Bash(find:*)",
+      "Bash(npm outdated:*)"
+    ]
+  }
+}

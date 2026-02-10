@@ -1,5 +1,11 @@
 # @borta/web-ui
 
+## 1.2.1
+
+### Patch Changes
+
+- Add README documentation to npm package
+
 ## 1.2.0
 
 ### Minor Changes
