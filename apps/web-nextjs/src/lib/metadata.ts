@@ -8,7 +8,7 @@ export function generateProfileMetadata(profile: Profile): Metadata {
     profile.headline || `View ${profile.name}'s photo gallery with ${publicPictures.length} photos`;
 
   return {
-    title: profile.name,
+    title: `${profile.name} | Erasys Test`,
     description,
     openGraph: (() => {
       const featured = publicPictures[0];
