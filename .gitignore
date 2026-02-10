@@ -6,7 +6,6 @@ build/
 .expo/
 *.log
 .env*.local
-docs/
 coverage/
 .npmrc
 .vercel

@@ -120,3 +120,17 @@ Shared React components with a dark-first theme system using Tailwind CSS v4.
 - **No NativeWind on mobile** — `StyleSheet.create` keeps the mobile app simple and dependency-light
 
 See `docs/DECISIONS.md` for detailed rationale on every architectural choice.
+
+## Documentation
+
+The `docs/` folder contains detailed reference material:
+
+| File                                                          | Description                                                                               |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [DECISIONS.md](docs/DECISIONS.md)                             | Architectural decisions with rationale — useful for interview discussions                 |
+| [CONFIG_REFERENCE.md](docs/CONFIG_REFERENCE.md)               | Every config file in the repo explained (turbo, tsconfig, tsup, vitest, eslint, prettier) |
+| [CONFIG_REFERENCE_MOBILE.md](docs/CONFIG_REFERENCE_MOBILE.md) | Mobile-specific config reference (metro, app.json, expo)                                  |
+| [RELEASE_WORKFLOW.md](docs/RELEASE_WORKFLOW.md)               | How to version and publish packages with Changesets                                       |
+| [TOOLS.md](docs/TOOLS.md)                                     | Dev tooling overview (ESLint, Prettier, Husky, lint-staged)                               |
+| [TSCONFIG_REFERENCE.md](docs/TSCONFIG_REFERENCE.md)           | TypeScript configuration details per project                                              |
+| [SETUP_GUIDE.md](docs/SETUP_GUIDE.md)                         | Step-by-step setup guide from scratch                                                     |
