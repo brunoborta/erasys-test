@@ -62,34 +62,31 @@ export default function App() {
           <h2 className="sr-only">Photo Gallery</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {safePictures.map((picture, index) => (
-              <figure
-                className="w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] lg:w-[calc(25%-0.75rem)]"
+              <PhotoCard
                 key={picture.id}
-              >
-                <PhotoCard
-                  aspectRatio={3 / 4}
-                  imageSlot={
-                    <img
-                      src={buildImageUrl(picture.url_token)}
-                      alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
-                  }
-                  overlaySlot={
-                    <Overlay
-                      title={`${picture.width} × ${picture.height}`}
-                      subtitle={`Rating: ${picture.rating}`}
-                    />
-                  }
-                  captionSlot={
-                    <figcaption className="sr-only">
-                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
-                      {picture.height} pixels
-                    </figcaption>
-                  }
-                />
-              </figure>
+                className="w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.75rem)] lg:w-[calc(25%-0.75rem)]"
+                aspectRatio={3 / 4}
+                imageSlot={
+                  <img
+                    src={buildImageUrl(picture.url_token)}
+                    alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading={index < 4 ? "eager" : "lazy"}
+                  />
+                }
+                overlaySlot={
+                  <Overlay
+                    title={`${picture.width} × ${picture.height}`}
+                    subtitle={`Rating: ${picture.rating}`}
+                  />
+                }
+                captionSlot={
+                  <figcaption className="sr-only">
+                    Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
+                    {picture.height} pixels
+                  </figcaption>
+                }
+              />
             ))}
           </div>
         </section>

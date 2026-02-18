@@ -32,36 +32,36 @@ export default async function Home() {
           <h2 className="sr-only">Photo Gallery</h2>
           <MasonryGrid>
             {publicPictures.map((picture, index) => (
-              <figure className="mb-4 break-inside-avoid" key={picture.id}>
-                <PhotoCard
-                  aspectRatio={picture.width / picture.height}
-                  imageSlot={
-                    <Image
-                      src={buildImageUrl(picture.url_token)}
-                      alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 380px"
-                      quality={80}
-                      priority={index < 4}
-                      fetchPriority={index < 4 ? "high" : "auto"}
-                      loading={index < 4 ? "eager" : "lazy"}
-                    />
-                  }
-                  overlaySlot={
-                    <Overlay
-                      title={`${picture.width} × ${picture.height}`}
-                      subtitle={`Rating: ${picture.rating}`}
-                    />
-                  }
-                  captionSlot={
-                    <figcaption className="sr-only">
-                      Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
-                      {picture.height} pixels
-                    </figcaption>
-                  }
-                />
-              </figure>
+              <PhotoCard
+                key={picture.id}
+                className="mb-4 break-inside-avoid"
+                aspectRatio={picture.width / picture.height}
+                imageSlot={
+                  <Image
+                    src={buildImageUrl(picture.url_token)}
+                    alt={`Photo by ${profile.name} - ${picture.width}x${picture.height} pixels, rating ${picture.rating}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 380px"
+                    quality={80}
+                    priority={index < 4}
+                    fetchPriority={index < 4 ? "high" : "auto"}
+                    loading={index < 4 ? "eager" : "lazy"}
+                  />
+                }
+                overlaySlot={
+                  <Overlay
+                    title={`${picture.width} × ${picture.height}`}
+                    subtitle={`Rating: ${picture.rating}`}
+                  />
+                }
+                captionSlot={
+                  <figcaption className="sr-only">
+                    Photo {index + 1} by {profile.name}, dimensions {picture.width} by{" "}
+                    {picture.height} pixels
+                  </figcaption>
+                }
+              />
             ))}
           </MasonryGrid>
         </section>

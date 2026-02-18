@@ -16,10 +16,8 @@ export function PhotoCard({
   className,
 }: PhotoCardProps) {
   return (
-    <>
-      <div
-        className={`group relative overflow-hidden rounded-lg bg-card-bg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-out ${className || ""}`}
-      >
+    <figure className={className}>
+      <div className="group relative overflow-hidden rounded-lg bg-card-bg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 ease-out">
         <div
           className="relative"
           style={{
@@ -33,6 +31,6 @@ export function PhotoCard({
       </div>
 
       {captionSlot}
-    </>
+    </figure>
   );
 }
